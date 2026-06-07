@@ -6,7 +6,10 @@ Movie Review Generator | Angel Adrian Hernandez
 """
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
+
 from routers.movies import router as movie_router
+from routers.favorites import router as favorite_router
+from routers.history import router as history_router
 
 app = FastAPI()
 
@@ -15,3 +18,5 @@ def home():
     return RedirectResponse(url="/docs")
 
 app.include_router(movie_router)
+app.include_router(favorite_router)
+app.include_router(history_router)
