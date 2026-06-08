@@ -1,43 +1,57 @@
-# Movie Review API
+# 🎬 Movie Review API
 
 A backend movie review API built with FastAPI and the OMDb API.
 
 This project allows users to search for movie information including:
 
-* title
-* genre
-* plot summary
-* IMDb rating
-* audience ratings
+- title  
+- genre  
+- plot summary  
+- IMDb rating  
+- audience ratings  
 
 The API retrieves and formats movie data into clean JSON responses using FastAPI and Pydantic models.
 
 ---
 
-## Features
+## ✨ Features
 
-* FastAPI backend
-* RESTful API endpoints
-* Pydantic response models
-* OMDb API integration
-* Automatic Swagger documentation
-* HTTP error handling
-* Modular project structure
-
----
-
-## Technologies Used
-
-* Python
-* FastAPI
-* Pydantic
-* Requests
-* Uvicorn
-* OMDb API
+- FastAPI backend  
+- RESTful API endpoints  
+- Pydantic response models (Movie, Favorites, History)  
+- OMDb API integration  
+- Automatic Swagger documentation (`/docs`)  
+- HTTP error handling  
+- Modular project structure  
+- User favorites system (add/remove movies)  
+- Search history tracking (recent queries)  
 
 ---
 
-## Project Structure
+## 📊 Data Models
+
+The API uses Pydantic models to ensure structured and validated responses:
+
+- **Movie Model** → Standard movie data returned from OMDb  
+- **Favorite Model** → Stores user-saved favorite movies  
+- **History Model** → Tracks previously searched movies  
+
+These models ensure consistent API responses and improve type safety across the application.
+
+---
+
+## 🛠️ Technologies Used
+
+- Python  
+- FastAPI  
+- Pydantic  
+- Requests  
+- Uvicorn  
+- OMDb API  
+
+---
+
+## 📁 Project Structure
 
 ```text
 movie-review-api/
@@ -46,7 +60,9 @@ movie-review-api/
 │   └── movie.py
 │
 ├── routers/
-│   └── movies.py
+│   ├── movies.py
+│   ├── favorites.py
+│   └── history.py
 │
 ├── services/
 │   └── omdb_service.py
@@ -64,6 +80,7 @@ Clone the repository:
 
 ```bash
 git clone <your-github-repo>
+cd  movie_review_api
 ```
 
 Install dependencies:
@@ -90,35 +107,30 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## Example Endpoint
+## API Endpoints
 
+Movies:
 ```text
-GET /movie/interstellar
+GET /movie/{title} --> Get movie details
 ```
-
-Example Response:
-
-```json
-{
-  "title": "Interstellar",
-  "year": "2014",
-  "genre": "Adventure, Drama, Sci-Fi",
-  "plot": "A team of explorers travel through a wormhole in space...",
-  "imdb_rating": "8.7"
-}
+Favorites:
+```text
+POST /favorites/ --> Add movie to favorites
+GET  /favorites/ --> Get all favorite movies
+```
+History:
+```text
+GET /history/ --> Retrieve search history
 ```
 
 ---
 
 ## Future Improvements
 
-* Search endpoint
 * Async requests with httpx
-* Database integration
-* User favorites
-* Caching
-* Deployment
-* Frontend interface
+* User authentication (JWT)
+* Deployment (Render / Railway / AWS)
+* Frontend interface (React or Next.js)
 
 ---
 

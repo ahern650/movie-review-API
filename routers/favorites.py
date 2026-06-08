@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 import psycopg
 from database.connection import get_db_connection
+from models.favorite import Favorite
 
 router = APIRouter(prefix="/favorites", tags=["favorites"])
 
@@ -26,7 +27,7 @@ def add_favorite(movie_id: int, conn: psycopg.Connection = Depends(get_db_connec
             detail="Database error"
         )
 
-@router.get("/")
+@router.get("/", response_model=list[Favorite])
 def get_favorites(conn: psycopg.Connection = Depends(get_db_connection)):
     try:
         with conn.cursor() as cur:
